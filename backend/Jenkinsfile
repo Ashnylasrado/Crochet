@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    triggers {
+        githubPush()
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install Backend Dependencies') {
+            steps {
+                dir('backend') {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Build Frontend') {
+            steps {
+                dir('frontend') {
+                    sh 'npm install'
+                    sh 'npm run build'
+                }
+            }
+        }
+
+        stage('Copy Frontend Build into Backend') {
+            steps {
+                sh 'rm -rf backend/public'
+                sh 'mkdir -p backend/public'
+                sh 'cp -r frontend/dist/* backend/public/'
+            }
+        }
+
+        stage('Deploy to Live App') {
+            steps {
+                sh '''
+                    rsync -av --exclude=".git" --exclude="node_modules" "$WORKSPACE"/ /home/ubuntu/Crochet/
+                    cd /home/ubuntu/Crochet/backend
+                    npm install
+                    pm2 restart crochet-shop
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployed successfully!'
+        }
+        failure {
+            echo 'Build or deploy failed — check console output.'
+        }
+    }
+}
