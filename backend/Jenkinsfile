@@ -44,7 +44,8 @@ pipeline {
             cd /home/ubuntu/Crochet/backend
             npm install
             export PM2_HOME=/home/ubuntu/.pm2
-            pm2 restart crochet-shop
+            pm2 restart crochet-shop || pm2 start server.js --name crochet-shop
+            pm2 save
         '''
     }
 }
