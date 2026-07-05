@@ -211,3 +211,53 @@ a { color: inherit; }
   color: #d17b9c;
   font-weight: bold;
 }
+/* About page - founder card */
+.about-page h2 {
+  margin-top: 32px;
+}
+.founder-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  margin-top: 16px;
+}
+.founder-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #d17b9c;
+  flex-shrink: 0;
+}
+.founder-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.founder-name {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+.founder-location {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+.founder-note {
+  margin: 8px 0 0;
+  color: #d17b9c;
+  font-style: italic;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .founder-card {
+    flex-direction: column;
+    text-align: center;
+  }
+}

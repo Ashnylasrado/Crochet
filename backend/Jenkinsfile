@@ -38,15 +38,16 @@ pipeline {
         }
 
         stage('Deploy to Live App') {
-            steps {
-                sh '''
-                    rsync -rv --no-perms --no-owner --no-group --exclude=".git" --exclude="node_modules" "$WORKSPACE"/ /home/ubuntu/Crochet/
-                    cd /home/ubuntu/Crochet/backend
-                    npm install
-                    pm2 restart crochet-shop
-                '''
-            }
-        }
+    steps {
+        sh '''
+            rsync -rv --no-perms --no-owner --no-group --exclude=".git" --exclude="node_modules" "$WORKSPACE"/ /home/ubuntu/Crochet/
+            cd /home/ubuntu/Crochet/backend
+            npm install
+            export PM2_HOME=/home/ubuntu/.pm2
+            pm2 restart crochet-shop
+        '''
+    }
+}
     }
 
     post {
