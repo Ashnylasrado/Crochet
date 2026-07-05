@@ -40,7 +40,7 @@ pipeline {
         stage('Deploy to Live App') {
             steps {
                 sh '''
-                    rsync -av --exclude=".git" --exclude="node_modules" "$WORKSPACE"/ /home/ubuntu/Crochet/
+                    rsync -rv --no-perms --no-owner --no-group --exclude=".git" --exclude="node_modules" "$WORKSPACE"/ /home/ubuntu/Crochet/
                     cd /home/ubuntu/Crochet/backend
                     npm install
                     pm2 restart crochet-shop
