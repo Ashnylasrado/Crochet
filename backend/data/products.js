@@ -77,5 +77,15 @@ export const products = [
     description: "A cute and comfortable handmade crochet romper for babies, soft enough for everyday wear.",
     tags: ["baby", "romper", "clothing", "soft", "cute", "gift", "newborn", "shower gift"],
     imageUrl: "/product-images/romper.jpeg"
+  },
+  
+  {
+    id: 9,
+    name: "Sunflower bag Charm",
+    price: 10.0,
+    category: "bags",
+    description: "A delightful sunflower-shaped charm for your crochet bag.",
+    tags: ["charm", "bag", "accessories", "sunflower", "flower", "gift", "summer"],
+    imageUrl: "/product-images/sunflower.jpeg"
   }
 ];
