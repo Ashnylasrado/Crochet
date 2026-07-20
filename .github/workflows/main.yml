@@ -1,0 +1,15 @@
+```yaml
+name: first pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  first_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print first message
+        run: echo "hello everyone"
+      - name: print second message
+        run: echo "bye everyone"
+```
